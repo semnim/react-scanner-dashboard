@@ -1,0 +1,68 @@
+{
+  "Text": {
+    "instances": [
+      {
+        "props": {
+          "textStyle": "subtitle2"
+        },
+        "propsSpread": false,
+        "location": {
+          "file": "/path/to/file",
+          "start": {
+            "line": 9,
+            "column": 9
+          }
+        }
+      },
+      {
+        "props": {
+          "margin": "4 0 0 0"
+        },
+        "propsSpread": false,
+        "location": {
+          "file": "/path/to/file",
+          "start": {
+            "line": 12,
+            "column": 9
+          }
+        }
+      }
+    ]
+  },
+  "Link": {
+    "instances": [
+      {
+        "props": {
+          "href": "https://github.com/moroshko/react-scanner",
+          "newTab": null
+        },
+        "propsSpread": false,
+        "location": {
+          "file": "/path/to/file",
+          "start": {
+            "line": 14,
+            "column": 11
+          }
+        }
+      }
+    ]
+  },
+  "Container": {
+    "instances": [
+      {
+        "props": {
+          "margin": "4",
+          "hasBreakpointWidth": null
+        },
+        "propsSpread": false,
+        "location": {
+          "file": "/path/to/file",
+          "start": {
+            "line": 8,
+            "column": 7
+          }
+        }
+      }
+    ]
+  }
+}

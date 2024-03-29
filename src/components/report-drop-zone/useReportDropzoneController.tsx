@@ -6,7 +6,10 @@ import {
 } from "components/report-drop-zone/ReportDropzone.tsx";
 
 
-export const useReportDropzoneController = (onReportChange: (newReport: File) => void): ReportDropZoneViewModel & ReportDropZoneHandlers => {
+export const useReportDropzoneController = (
+    onReportChange: (newReport: File) => void,
+    onValidateReport: (report: File) => Promise<void>
+): ReportDropZoneViewModel & ReportDropZoneHandlers => {
 
   const [errors, setErrors] = useState<string[] | null>(null);
 
@@ -14,6 +17,12 @@ export const useReportDropzoneController = (onReportChange: (newReport: File) =>
     const [file] = acceptedFiles;
     onReportChange(file);
     setErrors(null);
+
+    // TODO
+    onValidateReport(file).then(() => {
+    }).catch((err: unknown) => {
+      console.log(err)
+    })
   }, []);
 
   const handleReject = useCallback((rejectedFiles: FileRejection[]) => {
