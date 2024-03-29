@@ -1,0 +1,1 @@
+export const processors = ["count-components", "count-components-and-props", "raw-report"] as const;

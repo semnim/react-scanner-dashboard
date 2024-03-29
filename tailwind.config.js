@@ -11,7 +11,8 @@ export default {
         secondary: {},
         errorDark: {},
         errorLight: {},
-      },
+        "react-blue": "#61DBFB"
+      }
     },
   },
   plugins: [],

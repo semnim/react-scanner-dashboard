@@ -3,15 +3,14 @@ import {
   IconChecklist,
 } from "@tabler/icons-react";
 import {ReportDropzone} from "components/report-drop-zone/ReportDropzone.tsx";
-import {useReportUploadController} from "./useReportUploadController";
+import {useReportUploadController} from "components/report-upload/useReportUploadController.tsx";
 import {
   ValidationErrorBoundary
 } from "components/validation-error-boundary/ValidationErrorBoundary";
 import {useNavigate} from "react-router-dom";
+import {processors} from "components/report-upload/processors.ts";
 
-export const processors = ["count-components", "count-components-and-props", "raw-report"] as const;
 export type Processor = typeof processors[number];
-
 
 export interface ReportUploadViewModel {
   report: File | null;
@@ -59,10 +58,13 @@ export const ReportUpload = () => {
       <Text size={"md"} fw={600}>
         Success!
       </Text>
-      <Text mt={5} c={"green"}>
-        <IconChecklist size={14} style={{marginRight: 5}}/>
-        «{report.name}» uploaded successfully.
-      </Text>
+      <Group gap={"xs"} className={"items-end"}>
+        <IconChecklist size={25} className={"mr-1 text-green-600"}/>
+        <Text className={"mt-1 text-green-400"}>
+          «{report.name}» uploaded successfully.
+        </Text>
+      </Group>
+
       <Text size={"md"} fw={600}>
         Report type: {reportType}
       </Text>

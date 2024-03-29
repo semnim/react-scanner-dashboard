@@ -1,7 +1,12 @@
-import {Processor, processors, ReportUploadHandlers, ReportUploadViewModel} from "./ReportUpload";
+import {
+  Processor,
+  ReportUploadHandlers,
+  ReportUploadViewModel
+} from "components/report-upload/ReportUpload.tsx";
 import {useState} from "react";
 import {processSchemas} from "components/report-upload/schemas.ts";
 import {readUploadedFile} from "lib/fileUtils";
+import {processors} from "components/report-upload/processors.ts";
 
 export const useReportUploadController = (): ReportUploadViewModel & ReportUploadHandlers => {
   const [report, setReport] = useState<File | null>(null);
