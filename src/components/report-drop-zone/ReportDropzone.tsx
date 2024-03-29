@@ -49,7 +49,7 @@ export const ReportDropzone = ({
           {
             errors.map(err => {
               return <Text key={err} mt={5} c={"red"}>
-                <IconX size={14} style={{marginRight: 5}}/>
+                <IconX size={14} className={"mr-1"}/>
                 {err}
               </Text>;
             })
@@ -66,26 +66,26 @@ export const ReportDropzone = ({
           maxSize={5 * 1024 ** 2}
           maxFiles={1}
           accept={{'application/json': ['json']}}
-          style={{width: '100%'}}
+          className={"w-full"}
           {...props}
       >
         <Stack>
-          <Group justify="center" gap="xl" mih={220} style={{pointerEvents: 'none'}}>
+          <Group justify="center" gap="xl" mih={220} className={"pointer-events-none"}>
             <Dropzone.Accept>
               <IconChecklist
-                  style={{width: rem(52), height: rem(52), color: 'var(--mantine-color-blue-6)'}}
+                  className="w-[3rem] h-[3rem] text-blue-600"
                   stroke={1.5}
               />
             </Dropzone.Accept>
             <Dropzone.Reject>
               <IconReportOff
-                  style={{width: rem(52), height: rem(52), color: 'var(--mantine-color-red-6)'}}
+                  className="w-[3rem] h-[3rem] text-red-600"
                   stroke={1.5}
               />
             </Dropzone.Reject>
             <Dropzone.Idle>
               <IconReport
-                  style={{width: rem(52), height: rem(52), color: 'var(--mantine-color-dimmed)'}}
+                  className="w-[3rem] h-[3rem] text-gray-500"
                   stroke={1.5}
               />
             </Dropzone.Idle>

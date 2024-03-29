@@ -7,11 +7,14 @@ import {useState} from "react";
 import {processSchemas} from "components/report-upload/schemas.ts";
 import {readUploadedFile} from "lib/fileUtils";
 import {processors} from "components/report-upload/processors.ts";
+import {useNavigate} from "react-router-dom";
 
 export const useReportUploadController = (): ReportUploadViewModel & ReportUploadHandlers => {
   const [report, setReport] = useState<File | null>(null);
   const [reportType, setReportType] = useState<Processor | null>(null);
   const [reportValidationErrors, setReportValidationErrors] = useState<Record<Processor, string[]> | null>(null);
+
+  const navigate = useNavigate();
 
   const onReportChange = (newReport: File) => {
     setReport(newReport)
@@ -22,7 +25,7 @@ export const useReportUploadController = (): ReportUploadViewModel & ReportUploa
   }
 
   const onVisualizeReport = () => {
-    // TODO
+    navigate("/report", {state: {report}});
   }
 
   const onValidateReport = async (report: File) => {

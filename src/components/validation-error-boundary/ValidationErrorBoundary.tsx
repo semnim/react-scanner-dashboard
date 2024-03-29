@@ -20,21 +20,20 @@ export const ValidationErrorBoundary = ({errors}: ValidationErrorBoundaryProps) 
         </Text>
 
         <Stack bg={"#f8d7da"} color={"error"} p={10} mt={10} align={"flex-start"} w={"100%"}
-               style={{border: "1px dashed red", borderRadius: "4px"}}>
-          <Stack align={"center"} style={{width: "100%"}}>
+               className={"rounded-md border border-dashed border-red-500"}>
+          <Stack align={"center"} className={"w-full"}>
             <IconCloudStorm size={50}/>
           </Stack>
-          <Stack style={{whiteSpace: 'nowrap', overflowX: 'auto', borderRadius: "5px"}}
-                 align={"flex-start"}>
+          <Stack className={"whitespace-nowrap overflow-x-auto rounded-md items-start"}>
             {Object.keys(errors).map((processor, index) => (
-                <Group key={processor} align={"flex-start"}>
+                <Group key={processor} className={"items-start"}>
                   <ActionIcon variant={"transparent"} onClick={() => {
                     open()
                     setChosenProcessor(processor as Processor);
                   }}>
                     <IconInfoCircle size={20} color={"red"}/>
                   </ActionIcon>
-                  <Text key={index} style={{color: 'red'}}>
+                  <Text key={index} className={"text-red-500"}>
                     {processor}
                   </Text>
                 </Group>
@@ -49,7 +48,7 @@ export const ValidationErrorBoundary = ({errors}: ValidationErrorBoundaryProps) 
                   <Text size={"md"}
                         c={"red"}>{chosenProcessor}</Text>
                 </Group>
-                <Accordion defaultValue={`${chosenProcessor}_1`} style={{minHeight: "600px"}}>
+                <Accordion defaultValue={`${chosenProcessor}_1`} className={"min-h-[600px]"}>
                   {
                     errors[chosenProcessor].map((error, index) => (
                         <Accordion.Item value={`${chosenProcessor}_${String(index + 1)}`}
@@ -57,19 +56,20 @@ export const ValidationErrorBoundary = ({errors}: ValidationErrorBoundaryProps) 
                           <Accordion.Control>#{index + 1}</Accordion.Control>
                           <Accordion.Panel>
                             <Text component={"pre"} key={error} c={"red"}
-                                  style={{whiteSpace: 'pre-wrap', wordWrap: 'break-word'}}>
+                                  className={"whitespace-pre break-words"}>
                               {JSON.stringify(JSON.parse(error), null, 2)}
                             </Text>
                           </Accordion.Panel>
                         </Accordion.Item>
                     ))}
                 </Accordion>
-                <Stack style={{marginInline: "auto"}}>
+                <Stack className={"mx-auto"}>
                   <Text size={"sm"}>Found a mistake?</Text>
                   <Link to={"https://github.com/semnim/react-scanner-dashboard/issues"}
                         target={"_blank"}
-                        style={{textAlign: "center"}}><Button variant={"default"}>Let me
-                    know</Button></Link>
+                        className={"text-center"}>
+                    <Button variant={"default"}>Let me know</Button>
+                  </Link>
                 </Stack>
 
               </Stack>

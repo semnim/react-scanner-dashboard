@@ -7,10 +7,12 @@ export default {
   theme: {
     extend: {
       colors: {
-        primary: {},
-        secondary: {},
-        errorDark: {},
-        errorLight: {},
+        "primary": {},
+        "secondary": {},
+        "error-dark": {},
+        "error-light": {},
+        "success": "green",
+        "success-light": {},
         "react-blue": "#61DBFB"
       }
     },
