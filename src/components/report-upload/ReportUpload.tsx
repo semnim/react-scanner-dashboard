@@ -10,7 +10,8 @@ import {Link} from "react-router-dom";
 import {useDisclosure} from "@mantine/hooks";
 import {useState} from "react";
 
-export type Processor = "count-components" | "count-components-and-props" | "raw-report";
+export const processors = ["count-components", "count-components-and-props", "raw-report"] as const;
+export type Processor = typeof processors[number];
 
 interface ValidationErrorBoundaryProps {
   errors: Record<Processor, string[]>;
@@ -18,6 +19,7 @@ interface ValidationErrorBoundaryProps {
 
 export const ValidationErrorBoundary = ({errors}: ValidationErrorBoundaryProps) => {
   const [opened, {open, close}] = useDisclosure(false);
+
   const [chosenProcessor, setChosenProcessor] = useState<Processor | null>(null);
   return (
       <>

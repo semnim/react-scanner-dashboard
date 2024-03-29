@@ -1,4 +1,4 @@
-import {Processor, ReportUploadHandlers, ReportUploadViewModel} from "./ReportUpload";
+import {Processor, processors, ReportUploadHandlers, ReportUploadViewModel} from "./ReportUpload";
 import {useState} from "react";
 import {z} from "zod";
 
@@ -61,22 +61,11 @@ export const useReportUploadController = (): ReportUploadViewModel & ReportUploa
     // TODO
   }
 
-  const processorByIndex = (index: number): Processor => {
-    switch (index) {
-      case 0:
-        return "count-components";
-      case 1:
-        return "count-components-and-props";
-      case 2:
-        return "raw-report";
-      default:
-        throw new Error(`Unknown processor index: ${String(index)}`);
-    }
-  }
   const onValidateReport = async (report: File) => {
     const reportContents = await readUploadedFile(report);
 
-    const processors: Processor[] = ["count-components", "count-components-and-props", "raw-report"];
+
+
     const errors: Record<Processor, string[]> = {
       "count-components": [],
       "count-components-and-props": [],
