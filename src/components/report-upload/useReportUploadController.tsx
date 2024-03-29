@@ -1,48 +1,7 @@
 import {Processor, processors, ReportUploadHandlers, ReportUploadViewModel} from "./ReportUpload";
 import {useState} from "react";
-import {z} from "zod";
-
-const countComponentsSchema = z.record(z.number());
-const countComponentsAndPropsSchema = z.record(
-    z.object({
-      instances: z.number(),
-      props: z.record(z.number()),
-    })
-);
-const rawReportSchema = z.record(
-    z.object({
-      instances: z.array(
-          z.object({
-            props: z.record(z.union([z.string(), z.null()])),
-            propsSpread: z.boolean(),
-            location: z.object({
-              file: z.string(),
-              start: z.object({
-                line: z.number(),
-                column: z.number(),
-              }),
-            }),
-          })
-      ),
-    })
-);
-
-const processSchemas = [countComponentsSchema, countComponentsAndPropsSchema, rawReportSchema];
-const readUploadedFile = (file: File): Promise<string> => {
-  return new Promise((resolve, reject) => {
-    const reader = new FileReader();
-
-    reader.onload = (event) => {
-      resolve(event.target?.result as string);
-    };
-
-    reader.onerror = (error) => {
-      reject(new Error(`File read failed: ${error.target?.error?.message ?? "Unknown error"}`));
-    };
-
-    reader.readAsText(file);
-  });
-};
+import {processSchemas} from "components/report-upload/schemas.ts";
+import {readUploadedFile} from "lib/fileUtils";
 
 export const useReportUploadController = (): ReportUploadViewModel & ReportUploadHandlers => {
   const [report, setReport] = useState<File | null>(null);
@@ -63,7 +22,6 @@ export const useReportUploadController = (): ReportUploadViewModel & ReportUploa
 
   const onValidateReport = async (report: File) => {
     const reportContents = await readUploadedFile(report);
-
 
 
     const errors: Record<Processor, string[]> = {

@@ -1,8 +1,11 @@
-import {MantineProvider, createTheme} from '@mantine/core';
 import '@mantine/core/styles.css';
 import './App.css';
-import {LandingPage} from "pages/LandingPage.tsx";
+
 import {RouterProvider, createBrowserRouter} from "react-router-dom";
+import {MantineProvider, createTheme} from '@mantine/core';
+
+import {LandingPage} from "pages/LandingPage.tsx";
+import {ReportPage} from "pages/ReportPage.tsx";
 
 export default function App() {
   const theme = createTheme({
@@ -13,6 +16,10 @@ export default function App() {
     {
       path: "/",
       element: <LandingPage/>,
+    },
+    {
+      path: "/report",
+      element: <ReportPage/>,
     },
   ]);
 

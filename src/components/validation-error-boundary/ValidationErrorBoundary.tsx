@@ -19,8 +19,8 @@ export const ValidationErrorBoundary = ({errors}: ValidationErrorBoundaryProps) 
           Could not associate a processor with the uploaded report.
         </Text>
 
-        <Stack bg={"#f8d7da"} color={"#721c24"} p={10} mt={10} align={"flex-start"}
-               style={{width: "100%", border: "1px dashed red", borderRadius: "4px"}}>
+        <Stack bg={"#f8d7da"} color={"error"} p={10} mt={10} align={"flex-start"} w={"100%"}
+               style={{border: "1px dashed red", borderRadius: "4px"}}>
           <Stack align={"center"} style={{width: "100%"}}>
             <IconCloudStorm size={50}/>
           </Stack>

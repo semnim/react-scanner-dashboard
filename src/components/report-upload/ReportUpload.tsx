@@ -7,6 +7,7 @@ import {useReportUploadController} from "./useReportUploadController";
 import {
   ValidationErrorBoundary
 } from "components/validation-error-boundary/ValidationErrorBoundary";
+import {useNavigate} from "react-router-dom";
 
 export const processors = ["count-components", "count-components-and-props", "raw-report"] as const;
 export type Processor = typeof processors[number];
@@ -36,6 +37,7 @@ export const ReportUpload = () => {
     onVisualizeReport
   } = useReportUploadController();
 
+  const navigate = useNavigate();
 
   const hasErrors = reportValidationErrors !== null && Object.values(reportValidationErrors).some((errors) => errors.length > 0);
   const isValidReport = reportValidationErrors === null || !hasErrors;
@@ -77,7 +79,10 @@ export const ReportUpload = () => {
             <Button color="blue" onClick={onUploadDifferentReport}>Choose a different
               report</Button>
             <Button disabled={!isValidReport} color={isValidReport ? "green" : "red"}
-                    onClick={onVisualizeReport}>Visualize report</Button>
+                    onClick={() => {
+                      onVisualizeReport();
+                      navigate("/report", {state: {report}});
+                    }}>Visualize report</Button>
           </Group>
       )
     }
