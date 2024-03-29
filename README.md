@@ -5,8 +5,8 @@ graphical UI for scan reports.
 
 ## Getting started
 
-`bun install` to install dependencies
-`bun run dev` for development
+`npm install` to install dependencies
+`npm run dev` for development
 
 ## Technologies used
 
