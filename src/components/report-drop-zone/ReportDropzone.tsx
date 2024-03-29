@@ -15,6 +15,7 @@ type OmitDropzoneProps = 'onDrop' | 'onReject';
 
 interface CustomDropzoneProps {
   onReportChange: (newReport: File) => void
+  onValidateReport: (report: File) => Promise<void>;
 }
 
 type ReportDropzoneProps = Omit<DropzoneProps, OmitDropzoneProps> & CustomDropzoneProps;
@@ -28,8 +29,16 @@ export interface ReportDropZoneViewModel {
   errors: string[] | null;
 }
 
-export const ReportDropzone = ({onReportChange, ...props}: ReportDropzoneProps) => {
-  const {errors, handleDrop, handleReject} = useReportDropzoneController(onReportChange);
+export const ReportDropzone = ({
+                                 onReportChange,
+                                 onValidateReport,
+                                 ...props
+                               }: ReportDropzoneProps) => {
+  const {
+    errors,
+    handleDrop,
+    handleReject
+  } = useReportDropzoneController(onReportChange, onValidateReport);
 
   const renderErrors = () => {
     if (!errors || errors.length == 0) {

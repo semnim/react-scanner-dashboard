@@ -1,4 +1,4 @@
-import {Container, Group, Stack, Text, Title} from "@mantine/core";
+import {Button, Container, Group, Stack, Text, Title} from "@mantine/core";
 import {Link} from "react-router-dom";
 import {ReportUpload} from "components/report-upload/ReportUpload.tsx";
 
@@ -19,7 +19,15 @@ export const LandingPage = () => {
       Visualize your <Link to={"http://react.dev"}><img
         style={{width: "2rem", height: "2rem", marginInline: ".5rem"}}
         src={"public/react_icon.svg"} alt={"react icon"}/></Link> repository with
-      Charts.
+      Charts and <Link style={{marginInline: "4px"}} target={"_blank"}
+                       to={"https://github.com/moroshko/react-scanner"}>
+      <Button
+          p={"xs"}
+          color={"black"}><img
+          style={{width: ".75rem", height: ".75rem", marginRight: ".5rem"}}
+          src={"public/github_icon.svg"} alt={"react icon"}/>react-scanner
+      </Button>
+    </Link>
     </Text>
     <Container mt={50}>
       <ReportUpload/>
