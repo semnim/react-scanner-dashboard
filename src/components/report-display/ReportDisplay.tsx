@@ -38,17 +38,14 @@ export const ReportDisplay = ({parsedReport, reportType}: ReportDisplayProps) =>
     return item;
   });
 
-  console.log(keys.slice(0, 6));
-  console.log(data);
   return <>
     <BarChart
         data={filledData}
         index="component"
         categories={keys.slice(0, 6)}
         yAxisWidth={45}
-        className="mt-6 hidden h-70 sm:block max-w-3xl"
+        className="mt-6 h-70 sm:block max-w-3xl"
         colors={['blue', 'teal', 'amber', 'rose', 'indigo', 'emerald'].slice(0, keys.length)}
-
     />
     <Button onClick={() => {
       navigate("/")

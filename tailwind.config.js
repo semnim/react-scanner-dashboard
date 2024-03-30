@@ -7,7 +7,7 @@ export default {
     "./src/**/*.{js,ts,jsx,tsx}",
 
     // Path to Tremor module
-    './node_modules/@tremor/**/*.{js,ts,jsx,tsx}',
+    "./node_modules/@tremor/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
     transparent: 'transparent',
@@ -134,4 +134,3 @@ export default {
   ],
   plugins: [require('@headlessui/tailwindcss'), require('@tailwindcss/forms')],
 };
-
