@@ -6,7 +6,7 @@ import {useNavigate} from "react-router-dom";
 import {Button} from "@mantine/core";
 
 export interface ReportDisplayViewModel {
-  data: Record<string, number | string>[]
+  data: Record<string, number | string | null>[]
 }
 
 export interface ReportDisplayHandlers {
@@ -32,19 +32,28 @@ export const ReportDisplay = ({parsedReport, reportType}: ReportDisplayProps) =>
   const filledData = data.map((item) => {
     for (const key of keys) {
       if (!item[key]) {
-        item[key] = 0;
+        item[key] = null;
       }
     }
     return item;
   });
 
+  console.log(parsedReport, reportType)
   return <>
+    {/*<BarChart*/}
+    {/*    data={data}*/}
+    {/*    index="component"*/}
+    {/*    categories={["count"]}*/}
+    {/*    yAxisWidth={45}*/}
+    {/*    className="mt-6 h-72 sm:block max-w-3xl"*/}
+    {/*    colors={['black']}*/}
+    {/*/>*/}
     <BarChart
         data={filledData}
         index="component"
         categories={keys.slice(0, 6)}
         yAxisWidth={45}
-        className="mt-6 h-70 sm:block max-w-3xl"
+        className="mt-6 h-72 sm:block max-w-3xl"
         colors={['blue', 'teal', 'amber', 'rose', 'indigo', 'emerald'].slice(0, keys.length)}
     />
     <Button onClick={() => {
