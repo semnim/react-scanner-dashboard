@@ -4,8 +4,8 @@ import './App.css';
 import {RouterProvider, createBrowserRouter} from "react-router-dom";
 import {MantineProvider, createTheme} from '@mantine/core';
 
-import {LandingPage} from "pages/LandingPage.tsx";
-import {ReportPage} from "pages/ReportPage.tsx";
+import {LandingPage} from "pages/landing/LandingPage.tsx";
+import {ReportPage} from "pages/report/ReportPage.tsx";
 
 export default function App() {
   const theme = createTheme({

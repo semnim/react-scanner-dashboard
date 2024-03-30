@@ -21,7 +21,7 @@ export const useReportDropzoneController = (
     // TODO
     onValidateReport(file).then(() => {
     }).catch((err: unknown) => {
-      console.log(err)
+      setErrors([...(errors ?? []), err as string]);
     })
   }, []);
 

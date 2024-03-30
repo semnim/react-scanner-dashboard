@@ -3,16 +3,16 @@ import {useState} from "react";
 import {Accordion, ActionIcon, Button, Group, Modal, Stack, Text} from "@mantine/core";
 import {IconCloudStorm, IconInfoCircle} from "@tabler/icons-react";
 import {Link} from "react-router-dom";
-import {Processor} from "components/report-upload/ReportUpload.tsx";
+import {ProcessorType} from "components/report-upload/ReportUpload.tsx";
 
 interface ValidationErrorBoundaryProps {
-  errors: Record<Processor, string[]>;
+  errors: Record<ProcessorType, string[]>;
 }
 
 export const ValidationErrorBoundary = ({errors}: ValidationErrorBoundaryProps) => {
   const [opened, {open, close}] = useDisclosure(false);
 
-  const [chosenProcessor, setChosenProcessor] = useState<Processor | null>(null);
+  const [chosenProcessor, setChosenProcessor] = useState<ProcessorType | null>(null);
   return (
       <>
         <Text size={"md"} fw={600}>
@@ -29,7 +29,7 @@ export const ValidationErrorBoundary = ({errors}: ValidationErrorBoundaryProps) 
                 <Group key={processor} className={"items-start"}>
                   <ActionIcon variant={"transparent"} onClick={() => {
                     open()
-                    setChosenProcessor(processor as Processor);
+                    setChosenProcessor(processor as ProcessorType);
                   }}>
                     <IconInfoCircle size={20} color={"red"}/>
                   </ActionIcon>

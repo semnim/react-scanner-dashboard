@@ -1,5 +1,5 @@
 import {
-  Processor,
+  ProcessorType,
   ReportUploadHandlers,
   ReportUploadViewModel
 } from "components/report-upload/ReportUpload.tsx";
@@ -11,8 +11,8 @@ import {useNavigate} from "react-router-dom";
 
 export const useReportUploadController = (): ReportUploadViewModel & ReportUploadHandlers => {
   const [report, setReport] = useState<File | null>(null);
-  const [reportType, setReportType] = useState<Processor | null>(null);
-  const [reportValidationErrors, setReportValidationErrors] = useState<Record<Processor, string[]> | null>(null);
+  const [reportType, setReportType] = useState<ProcessorType | null>(null);
+  const [reportValidationErrors, setReportValidationErrors] = useState<Record<ProcessorType, string[]> | null>(null);
 
   const navigate = useNavigate();
 
@@ -25,14 +25,14 @@ export const useReportUploadController = (): ReportUploadViewModel & ReportUploa
   }
 
   const onVisualizeReport = () => {
-    navigate("/report", {state: {report}});
+    navigate("/report", {state: {report, reportType}});
   }
 
   const onValidateReport = async (report: File) => {
     const reportContents = await readUploadedFile(report);
 
 
-    const errors: Record<Processor, string[]> = {
+    const errors: Record<ProcessorType, string[]> = {
       "count-components": [],
       "count-components-and-props": [],
       "raw-report": [],

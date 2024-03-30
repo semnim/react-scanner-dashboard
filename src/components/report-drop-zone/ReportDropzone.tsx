@@ -6,7 +6,7 @@ import {
   IconReportOff,
   IconChecklist
 } from '@tabler/icons-react';
-import {Group, Text, rem, Stack} from '@mantine/core';
+import {Group, Text, Stack} from '@mantine/core';
 import {
   useReportDropzoneController
 } from "components/report-drop-zone/useReportDropzoneController.tsx";

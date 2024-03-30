@@ -1,4 +1,5 @@
 import {z} from "zod";
+import { ProcessorType } from "./ReportUpload";
 
 const countComponentsSchema = z.record(z.number());
 const countComponentsAndPropsSchema = z.record(
@@ -25,5 +26,11 @@ const rawReportSchema = z.record(
     })
 );
 
-export const processSchemas = [countComponentsSchema, countComponentsAndPropsSchema, rawReportSchema];
+const processSchemas = [countComponentsSchema, countComponentsAndPropsSchema, rawReportSchema];
+
+type Processor = typeof processSchemas[number];
+type ProcessorTypeMap = Record<ProcessorType, z.infer<Processor>>
+
+export {processSchemas};
+export type { ProcessorTypeMap };
 

@@ -10,12 +10,12 @@ import {
 import {processors} from "components/report-upload/processors.ts";
 
 
-export type Processor = typeof processors[number];
+export type ProcessorType = typeof processors[number];
 
 export interface ReportUploadViewModel {
   report: File | null;
-  reportValidationErrors: Record<Processor, string[]> | null;
-  reportType: Processor | null;
+  reportValidationErrors: Record<ProcessorType, string[]> | null;
+  reportType: ProcessorType | null;
 }
 
 export interface ReportUploadHandlers {
