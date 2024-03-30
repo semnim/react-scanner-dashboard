@@ -41,8 +41,9 @@ export const ValidationErrorBoundary = ({errors}: ValidationErrorBoundaryProps) 
           </Stack>
         </Stack>
         {chosenProcessor &&
-            <Modal opened={opened} centered size="xl" onClose={close} withCloseButton={false}>
-              <Stack gap={10}>
+            <Modal opened={opened} centered size="xl" onClose={close} withCloseButton={false}
+                   className={"flex-col overflow-auto"}>
+              <Stack gap={10} className={"flex-1 overflow-hidden"}>
                 <Group>
                   <Text size={"md"} fw={600}>Validation for Processor:</Text>
                   <Text size={"md"}

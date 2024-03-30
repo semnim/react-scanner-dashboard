@@ -48,10 +48,12 @@ export const ReportDropzone = ({
         <Stack gap={5}>
           {
             errors.map(err => {
-              return <Text key={err} mt={5} c={"red"}>
-                <IconX size={14} className={"mr-1"}/>
-                {err}
-              </Text>;
+              return <Group key={err} gap={"xs"} className={"items-baseline justify-start mr-auto"}>
+                <IconX size={14} color={"red"} className={"mr-1 mt-2"}/>
+                <Text key={err} mt={5} c={"red"}>
+                  {err}
+                </Text>
+              </Group>
             })
           }
         </Stack>

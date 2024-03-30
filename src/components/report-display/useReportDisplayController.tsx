@@ -7,6 +7,7 @@ import {ProcessorType} from "components/report-upload/ReportUpload.tsx";
 
 export const useReportDisplayController = (parsedReport: ProcessorTypeMap[ProcessorType], reportType: ProcessorType): ReportDisplayViewModel & ReportDisplayHandlers => {
 
+  // Simple component usage bar chart
   const getComponentFrequency = (data: ProcessorTypeMap["count-components" | "count-components-and-props"]) => {
 
     if (reportType === "count-components") {
