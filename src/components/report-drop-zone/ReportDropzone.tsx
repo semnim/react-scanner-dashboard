@@ -10,6 +10,7 @@ import {Group, Text, Stack} from '@mantine/core';
 import {
   useReportDropzoneController
 } from "components/report-drop-zone/useReportDropzoneController.tsx";
+import {GlowContainer} from "components/glow-container/GlowContainer.tsx";
 
 type OmitDropzoneProps = 'onDrop' | 'onReject';
 
@@ -49,8 +50,8 @@ export const ReportDropzone = ({
           {
             errors.map(err => {
               return <Group key={err} gap={"xs"} className={"items-baseline justify-start mr-auto"}>
-                <IconX size={14} color={"red"} className={"mr-1 mt-2"}/>
-                <Text key={err} mt={5} c={"red"}>
+                <IconX size={14} className={"mr-1 relative top-0.5 text-error"}/>
+                <Text key={err} mt={5} className={"text-sm text-error"}>
                   {err}
                 </Text>
               </Group>
@@ -62,47 +63,49 @@ export const ReportDropzone = ({
 
 
   return (
-      <Dropzone
-          onDrop={handleDrop}
-          onReject={handleReject}
-          maxSize={5 * 1024 ** 2}
-          maxFiles={1}
-          accept={{'application/json': ['json']}}
-          className={"w-full"}
-          {...props}
-      >
-        <Stack>
-          <Group justify="center" gap="xl" mih={220} className={"pointer-events-none"}>
-            <Dropzone.Accept>
-              <IconChecklist
-                  className="w-[3rem] h-[3rem] text-blue-600"
-                  stroke={1.5}
-              />
-            </Dropzone.Accept>
-            <Dropzone.Reject>
-              <IconReportOff
-                  className="w-[3rem] h-[3rem] text-red-600"
-                  stroke={1.5}
-              />
-            </Dropzone.Reject>
-            <Dropzone.Idle>
-              <IconReport
-                  className="w-[3rem] h-[3rem] text-gray-500"
-                  stroke={1.5}
-              />
-            </Dropzone.Idle>
+      <GlowContainer withPulse>
+        <Dropzone
+            onDrop={handleDrop}
+            onReject={handleReject}
+            maxSize={5 * 1024 ** 2}
+            maxFiles={1}
+            accept={{'application/json': ['json']}}
+            className={"h-full w-full bg-primary rounded-xl bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-100 group-hover:bg-opacity-90 px-8 border-1 border-solid thin-border border-0 group-hover:text-secondary group-hover:bg-primary"}
+            {...props}
+        >
+          <Stack>
+            <Group justify="center" gap="xl" mih={220} className={"pointer-events-none"}>
+              <Dropzone.Accept>
+                <IconChecklist
+                    className="w-[3rem] h-[3rem] text-success"
+                    stroke={1.5}
+                />
+              </Dropzone.Accept>
+              <Dropzone.Reject>
+                <IconReportOff
+                    className="w-[3rem] h-[3rem] text-error"
+                    stroke={1.5}
+                />
+              </Dropzone.Reject>
+              <Dropzone.Idle>
+                <IconReport
+                    className="w-[3rem] h-[3rem] text-secondary opacity-50"
+                    stroke={1.5}
+                />
+              </Dropzone.Idle>
 
-            <div>
-              <Text size="xl" inline>
-                Drag or click to upload your report
-              </Text>
-              <Text size="sm" c="dimmed" inline mt={7}>
-                The report should not exceed 5mb
-              </Text>
-            </div>
-          </Group>
-          {renderErrors()}
-        </Stack>
-      </Dropzone>
+              <div>
+                <Text size="xl" inline>
+                  Drag or click to upload your report
+                </Text>
+                <Text size="sm" c="dimmed" inline mt={7}>
+                  The report should not exceed 5mb
+                </Text>
+              </div>
+            </Group>
+            {renderErrors()}
+          </Stack>
+        </Dropzone>
+      </GlowContainer>
   );
 }

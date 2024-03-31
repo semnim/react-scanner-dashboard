@@ -1,4 +1,4 @@
-import {Button, Stack, Text} from "@mantine/core";
+import {Box, Button, Loader, Stack, Text} from "@mantine/core";
 import {ProcessorType} from "components/report-upload/ReportUpload.tsx";
 import {useReportPageController} from "pages/report/useReportPageController.tsx";
 import {ProcessorTypeMap} from "components/report-upload/schemas.ts";
@@ -15,12 +15,13 @@ export interface ReportPageHandlers {
 }
 
 export const ReportPage = () => {
-
   const {parsedReport, reportType, isLoading, handleClick} = useReportPageController();
 
 
   if (isLoading) {
-    return <Text>Loading...</Text>
+    return <Box className={"h-full w-full grid place-items-center"}>
+      <Loader/>
+    </Box>
   }
 
   if (!parsedReport || !reportType) {

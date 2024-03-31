@@ -1,5 +1,7 @@
 /** @type {import('tailwindcss').Config} */
 import colors from 'tailwindcss/colors';
+import tailwindcss from "@headlessui/tailwindcss";
+import forms from '@tailwindcss/forms';
 
 export default {
   content: [
@@ -13,16 +15,27 @@ export default {
     transparent: 'transparent',
     current: 'currentColor',
     extend: {
+      animation: {
+        'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+        'spin-slow': 'animate-spin 3s',
+      },
       colors: {
-        "react-blue": "#61DBFB",
+        "primary": "#070F2B",
+        "secondary": "#9400FF",
+        "faint": "#AED2FF",
+        "muted": "#E4F1FF",
+        "offwhite": "#F7F8F8",
+        "dimmed": "#868e96",
+        "success": colors.green[600],
+        "error": colors.red[600],
         // light mode
         tremor: {
           brand: {
-            faint: colors.blue[50],
-            muted: colors.blue[200],
-            subtle: colors.blue[400],
-            DEFAULT: colors.blue[500],
-            emphasis: colors.blue[700],
+            faint: colors.purple[50],
+            muted: colors.purple[200],
+            subtle: colors.purple[400],
+            DEFAULT: colors.purple[500],
+            emphasis: colors.purple[700],
             inverted: colors.white,
           },
           background: {
@@ -40,7 +53,7 @@ export default {
           content: {
             subtle: colors.gray[400],
             DEFAULT: colors.gray[500],
-            emphasis: colors.gray[700],
+            emphasis: colors.white[700],
             strong: colors.gray[900],
             inverted: colors.white,
           },
@@ -132,5 +145,5 @@ export default {
           /^(fill-(?:slate|gray|zinc|neutral|stone|red|orange|amber|yellow|lime|green|emerald|teal|cyan|sky|blue|indigo|violet|purple|fuchsia|pink|rose)-(?:50|100|200|300|400|500|600|700|800|900|950))$/,
     },
   ],
-  plugins: [require('@headlessui/tailwindcss'), require('@tailwindcss/forms')],
+  plugins: [tailwindcss, forms],
 };

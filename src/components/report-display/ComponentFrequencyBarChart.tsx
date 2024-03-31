@@ -4,17 +4,22 @@ import {ProcessorType} from "components/report-upload/ReportUpload.tsx";
 import {
   ActionIcon,
   Affix,
-  Box,
   Button,
   ComboboxItem,
   Group,
   Select,
   Stack,
-  Tooltip
 } from "@mantine/core";
 import {useEffect, useRef, useState} from "react";
-import {IconArrowDown, IconArrowUp, IconSearch} from "@tabler/icons-react";
+import {
+  IconArrowDown,
+  IconArrowUp,
+  IconSearch,
+  IconViewfinder,
+  IconViewfinderOff
+} from "@tabler/icons-react";
 import {FrequencyRangeFilter} from "components/report-display/FrequencyRangeFilter.tsx";
+import {ScrollButtons} from "./ScrollButtons";
 
 interface ComponentFrequencyBarChartProps {
   parsedData: ProcessorTypeMap["count-components" | "count-components-and-props"];
@@ -32,8 +37,6 @@ export const ComponentFrequencyBarChart = ({
                                              reportType
                                            }: ComponentFrequencyBarChartProps) => {
   const [selectedComponent, setSelectedComponent] = useState<string | null>(null);
-  const [showFloatingUpButton, setShowFloatingUpButton] = useState(false);
-  const [showFloatingDownButton, setShowFloatingDownButton] = useState(true);
   const getComponentFrequency = (data: ProcessorTypeMap["count-components" | "count-components-and-props"]): Bar[] => {
 
     if (reportType === "count-components") {
@@ -72,60 +75,34 @@ export const ComponentFrequencyBarChart = ({
     }
   }
 
-  const handleGoUp = () => {
-    window.scrollTo({top: 0, behavior: "smooth"});
-  }
-  const handleGoDown = () => {
-    window.scrollTo({top: document.body.scrollHeight, behavior: "smooth"});
 
-  }
   const data = getComponentFrequency(parsedData);
 
-  useEffect(() => {
-    const handleScroll = () => {
-      if (window.scrollY > 250 && window.scrollY <= document.body.scrollHeight - window.innerHeight) {
-        setShowFloatingUpButton(true);
-      } else {
-        setShowFloatingUpButton(false);
-      }
-      if (window.scrollY !== document.body.scrollHeight - window.innerHeight) {
-        setShowFloatingDownButton(true);
-      } else {
-        setShowFloatingDownButton(false);
-      }
-    }
-    window.addEventListener("scroll", handleScroll);
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    }
-  }, []);
 
   return <Stack>
-    <Group className={"justify-around mx-auto items-end"}>
-      <FrequencyRangeFilter/>
+    <Group className={"justify-around mx-auto items-center"}>
+      {/*<FrequencyRangeFilter/>*/}
       <Select
-          label="Find a component"
-          placeholder="Select a component from the list"
+          placeholder="Find a component"
           data={data.map(({name}) => name)}
           searchable
+          clearable
           value={selectedComponent}
           onChange={handleChange}
-          className={"w-80"}
+          color={"black"}
+          classNames={{
+            root: "w-80",
+          }}
       />
 
-      <Button disabled={!selectedComponent} rightSection={<IconSearch/>} onClick={handleFindItem}
-              variant={"transparent"}
-              color={"black"} className={"pb-2"}>Find</Button>
+      <ActionIcon disabled={!selectedComponent}
+                  onClick={handleFindItem}>
+        <IconViewfinder/>
+      </ActionIcon>
+
     </Group>
-    <BarList data={data} showAnimation/>
-    {showFloatingDownButton && <Affix position={{bottom: 20, left: 40}}>
-      <Button onClick={handleGoDown} leftSection={<IconArrowDown/>} variant={"transparent"}
-              color={"black"}>Go to end</Button>
-    </Affix>}
-    {showFloatingUpButton && <Affix position={{top: 20, left: 40}}>
-      <Button onClick={handleGoUp} leftSection={<IconArrowUp/>} variant={"transparent"}
-              color={"black"}>Go to start</Button>
-    </Affix>}
+    <BarList data={data} showAnimation className={"text-offwhite"}/>
+    <ScrollButtons/>
 
 
   </Stack>

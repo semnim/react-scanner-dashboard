@@ -5,33 +5,30 @@ import {ReportUpload} from "components/report-upload/ReportUpload.tsx";
 export const LandingPage = () => {
   return <Stack gap={"md"} className={"items-center"}>
     <Group>
-      <Title order={1}>Your</Title>
-      <Title order={1}
-             fw={900}
-             className={"bg-gradient-to-b from-black to-react-blue text-transparent bg-clip-text"}
-      >React</Title>
+      <Title order={1}>Your React</Title>
       <Title order={1}>Project At a Glance</Title>
     </Group>
 
-    <Group gap={"xs"}>
-      <Text size="md" className={"flex items-center"}>
+    <Group gap={"xs"} className={"[&>*]:text-2xl"}>
+      <Text>
         Visualize your
       </Text>
       <Link to={"http://react.dev"}>
         <img
-            className={"w-8 h-8"}
+            className={"w-8 h-8 hover:animate-pulse"}
             src={"react_icon.svg"} alt={"react icon"}/>
       </Link>
-      <Text size="md" className={"flex items-center"}>
+      <Text>
         repository with
         Charts and
       </Text>
-      <Link className={"flex items-center gap-1"}
+      <Link className={"flex items-center gap-1 underline hover:text-secondary"}
             target={"_blank"}
             to={"https://github.com/moroshko/react-scanner"}>
-        <Text>react-scanner</Text>
+        <Text className={"text-2xl"}>react-scanner</Text>
         <img
-            src={"github_icon.svg"} alt={"react icon"} className={"w-4 h-4 mr-2"}/>
+            src={"github-mark-white.png"} alt={"github icon"}
+            className={"w-5 h-5 ml-2"}/>
       </Link>
     </Group>
     <Container mt={50}>

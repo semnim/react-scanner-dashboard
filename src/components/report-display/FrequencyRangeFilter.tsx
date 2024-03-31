@@ -21,11 +21,11 @@ export const FrequencyRangeFilter = () => {
     />
     {mode === "range" ? (
         <Group>
-          <NumberInput className={"w-48"}
+          <NumberInput className={"w-48 bg-primary text-offwhite"}
                        min={0}
                        placeholder="Enter a lower bound"
           />
-          <NumberInput className={"w-48"}
+          <NumberInput className={"w-48 bg-primary text-offwhite"}
                        min={0}
                        placeholder="Enter a upper bound"
           />

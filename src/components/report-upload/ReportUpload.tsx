@@ -42,9 +42,10 @@ export const ReportUpload = () => {
   const getUserFeedback = (report: File | null) => {
 
     if (!report) {
-      return <Text size={"md"} fw={600}>
+      return <Text fw={600}>
         Upload your
-        react-scanner report
+        <Text component={"span"} fw={600} className={"text-secondary"}> react-scanner
+          report </Text>
         to get started.
       </Text>
     }
@@ -53,7 +54,7 @@ export const ReportUpload = () => {
     }
 
     return <Stack>
-      <Text size={"md"} fw={600}>
+      <Text fw={600}>
         Success!
       </Text>
       <Group gap={"xs"} className={"items-end"}>
@@ -63,7 +64,7 @@ export const ReportUpload = () => {
         </Text>
       </Group>
 
-      <Text size={"md"} fw={600}>
+      <Text fw={600}>
         Report type: {reportType}
       </Text>
     </Stack>
@@ -76,10 +77,15 @@ export const ReportUpload = () => {
           <ReportDropzone onReportChange={onReportChange} onValidateReport={onValidateReport}/>
       ) : (
           <Group>
-            <Button color="blue" onClick={onUploadDifferentReport}>Choose a different
-              report</Button>
-            <Button disabled={!isValidReport} color={isValidReport ? "green" : "red"}
-                    onClick={onVisualizeReport}>Visualize report</Button>
+            <Button variant={"outline"}
+                    className={"bg-transparent text-secondary hover:text-offwhite border-secondary"}
+                    onClick={onUploadDifferentReport}>
+              Change report
+            </Button>
+            <Button disabled={!isValidReport} //color={isValidReport ? "green" : "red"}
+                    variant={"filled"}
+                    className={"bg-secondary text-primary hover:bg-secondary hover:text-offwhite border-secondary"}
+                    onClick={onVisualizeReport}>Visualize</Button>
           </Group>
       )
     }

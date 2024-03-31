@@ -17,18 +17,24 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-
-a:hover {
-  color: #535bf2;
-}
-
 body {
   margin: 0;
   min-width: 320px;
   min-height: 100vh;
+  /*background: radial-gradient(#6c00802e, black);*/
+  background: radial-gradient(ellipse 100% 50% at 50% 20%, #1B1A55, #000);
+  @apply text-offwhite;
+  @apply text-xl
 }
+
+.thin-border::before {
+  @apply content-[""] pointer-events-none select-none absolute p-px rounded-[inherit] inset-0;
+  mask-image: linear-gradient(black, black), linear-gradient(black, black);
+  mask-size: auto, auto;
+  mask-repeat: repeat, repeat;
+  mask-origin: content-box, border-box;
+  mask-clip: content-box, border-box;
+  mask-composite: exclude;
+  background: linear-gradient(#1d1c5d, rgba(27, 26, 85, 0.5));
+}
+

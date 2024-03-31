@@ -19,19 +19,22 @@ export const ValidationErrorBoundary = ({errors}: ValidationErrorBoundaryProps) 
           Could not associate a processor with the uploaded report.
         </Text>
 
-        <Stack bg={"#f8d7da"} color={"error"} p={10} mt={10} align={"flex-start"} w={"100%"}
-               className={"rounded-md border border-dashed border-red-500"}>
+        <Stack p={10} mt={10} align={"flex-start"} w={"100%"}
+               className={"rounded-md border border-solid border-error"}>
           <Stack align={"center"} className={"w-full"}>
-            <IconCloudStorm size={50}/>
+            <IconCloudStorm size={50} className={"text-error"}/>
+            <Text fw={600} className={"text-dimmed max-w-[75%] text-sm"}>
+              Click the info icon to see the validation errors for each processor.
+            </Text>
           </Stack>
           <Stack className={"whitespace-nowrap overflow-x-auto rounded-md items-start"}>
             {Object.keys(errors).map((processor, index) => (
                 <Group key={processor} className={"items-start"}>
-                  <ActionIcon variant={"transparent"} onClick={() => {
+                  <ActionIcon onClick={() => {
                     open()
                     setChosenProcessor(processor as ProcessorType);
                   }}>
-                    <IconInfoCircle size={20} color={"red"}/>
+                    <IconInfoCircle size={20} color={"red"} className={"text-error mt-2"}/>
                   </ActionIcon>
                   <Text key={index} className={"text-red-500"}>
                     {processor}
@@ -69,7 +72,10 @@ export const ValidationErrorBoundary = ({errors}: ValidationErrorBoundaryProps) 
                   <Link to={"https://github.com/semnim/react-scanner-dashboard/issues"}
                         target={"_blank"}
                         className={"text-center"}>
-                    <Button variant={"default"}>Let me know</Button>
+                    <Button variant={"outline"}
+                            className={"border-dimmed text-dimmed hover:text-offwhite hover:border-offwhite"}>Let
+                      me
+                      know</Button>
                   </Link>
                 </Stack>
 

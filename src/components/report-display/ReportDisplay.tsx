@@ -4,7 +4,6 @@ import {ComponentFrequencyBarChart} from "./ComponentFrequencyBarChart";
 import {PropFrequencyBarChart} from "components/report-display/PropFrequencyBarChart.tsx";
 import {ActionIcon, Group, Stack, Tooltip} from "@mantine/core";
 import {useNavigate} from "react-router-dom";
-import {Button} from "@tremor/react";
 import {IconDeviceFloppy, IconHome} from "@tabler/icons-react";
 
 export interface ReportDisplayViewModel {
@@ -42,9 +41,10 @@ export const ReportDisplay = ({parsedReport, reportType}: ReportDisplayProps) =>
 
   return <Stack className={"items-stretch"}>
     <Group className={"justify-center"}>
-      <Tooltip label={"Home"}><ActionIcon variant="transparent" color="black"
-                                          onClick={handleClick}><IconHome/></ActionIcon></Tooltip>
-      <Tooltip label={"Save as PDF"}><ActionIcon variant="transparent" color="black" disabled
+      <Tooltip label={"Home"}><ActionIcon
+          onClick={handleClick}><IconHome/></ActionIcon></Tooltip>
+      <Tooltip label={"Save as PDF"}><ActionIcon className={"text-offwhite hover:text-gray-400"}
+                                                 disabled
                                                  onClick={handleClick}><IconDeviceFloppy/></ActionIcon></Tooltip>
     </Group>
     {renderStatistic()}
